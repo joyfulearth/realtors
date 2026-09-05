@@ -1,22 +1,4 @@
 <?php
-function network_before_render() {
-	$vars = [];
-	$allLinks = false;
-
-	if (SITENAME == 'real-estate') {
-		$vars[VAREmail] = 'vra@aztras.in';
-		$vars[VARMediakit] = '?themecolor=00725B&heading=FEDA15';
-		$allLinks = true;
-	}
-
-	variables($vars);
-	if ($allLinks) variables([
-		VARLinkToSectionHome => true,
-		'link-to-node-home' => true,
-		'link-to-sub-node-home' => true,
-	]);
-}
-
 function is_page_secure() {
 	return variable(VARLocal) && !getQueryParameter('insecure');
 }
@@ -26,15 +8,13 @@ function network_before_file() {
 }
 
 function before_footer_assets() { //before as color needs to be overridden in mediakit
-	if (SITENAME == 'real-estate') {
-		includeThemeManager();
-		echo implode('	', CanvasTheme::HeadCssFor('real-estate')) . NEWLINE;
-	}
+	includeThemeManager();
+	echo implode('	', CanvasTheme::HeadCssFor('real-estate')) . NEWLINE;
 }
 
 function enrichThemeVars($vars, $what) {
 	if ($what == 'header') {
-		if (SITENAME == 'real-estate' && nodeIs(SITEHOME))
+		if (nodeIs(SITEHOME))
 			$vars['optional-slider'] = getSnippet('home-slider');
 
 		if ($vars['optional-slider'])
@@ -43,16 +23,22 @@ function enrichThemeVars($vars, $what) {
 	return $vars;
 }
 
-setup_cdn('others/aztras/' . SITENAME . '/');
+setup_cdn();
 
 variables([
-	VAREmail => plus_email('raveendar1960@gmail.com', 'aztras-' . SITENAME),
+	VAREmail => plus_email('raveendar1960@gmail.com', 'realtors'),
 	VARPhone  =>  $ph = '+91-91766-86867',
 	VARWhatsapp  => whatsapp_clean($ph),
 	VARPhone2 =>  $ph = '+91-8148165952',
 	VARWhatsapp2 => whatsapp_clean($ph),
 
 	'dont-show-current-menu' => true,
+
+	VARMediakit => '?themecolor=00725B&heading=FEDA15',
+
+	VARLinkToSectionHome => true,
+	VARLinkToNodeHome => true,
+	VARLinkToSubnodeHome => true,
 	VARLinkToSiteHome => true,
 
 	socialBuilder::variableName => socialBuilder::create()

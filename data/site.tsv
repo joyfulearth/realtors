@@ -7,6 +7,6 @@ iconName	Aztra Realtors
 siteMenuName	Real Estate
 scaffold	sitemap
 sections	properties: vra, insights
-local-url	http://localhost/others/aztras/real-estate/
-live-url	https://real-estate.aztras.joyfulearth.org/
+local-url	http://localhost/aztras/businesses/realtors/
+live-url	https://realtors.aztras.com/
 year	2025

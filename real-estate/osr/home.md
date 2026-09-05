@@ -1,3 +1,0 @@
-## %section_r%
-
-%fileName%

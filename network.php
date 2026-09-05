@@ -1,12 +1,10 @@
 <?php
 function network_before_render() {
 	$vars = [];
-	//TODO: sync mechanism / beycomp training
-	$vars['cdn'] = subVariable('site-vars', 'live-url') . 'assets/cdn/';
 	$allLinks = false;
 
 	if (SITENAME == 'real-estate') {
-		$vars[VAREmail] = 'vra@aurrra.in';
+		$vars[VAREmail] = 'vra@aztras.in';
 		$vars[VARMediakit] = '?themecolor=00725B&heading=FEDA15';
 		$allLinks = true;
 	}
@@ -45,6 +43,8 @@ function enrichThemeVars($vars, $what) {
 	return $vars;
 }
 
+setup_cdn('others/aztras/' . SITENAME . '/');
+
 variables([
 	VAREmail => plus_email('raveendar1960@gmail.com', 'aztras-' . SITENAME),
 	VARPhone  =>  $ph = '+91-91766-86867',
@@ -54,8 +54,6 @@ variables([
 
 	'dont-show-current-menu' => true,
 	VARLinkToSiteHome => true,
-
-	'live-cdn' => true, //TODO: HI: find the folder...
 
 	socialBuilder::variableName => socialBuilder::create()
 		->addLinkedIn('#todo-raveendar/', 'Raveendar')

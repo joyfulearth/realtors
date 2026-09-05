@@ -1,9 +1,0 @@
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-</IfModule>
-
-<IfModule mod_rewrite.c>
-RewriteCond $1 !^(index\.php|assets|content|themes|modules|flavours)
-RewriteCond %{REQUEST_URI} !\.(pdf|mp4|mp3|jpg|png|xml|zip)$
-RewriteRule ^(.*)$ index.php/?%{QUERY_STRING}&node=$1 [L]
-</IfModule>
